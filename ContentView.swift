@@ -11,6 +11,7 @@ class ArrayModificationViewModel: ObservableObject {
     }
     
     func filter() {
+        // SORT
         /*
         filterdArray = users.sorted(by: { user1, user2 -> Bool in
             return user1.points < user2.points
@@ -20,6 +21,13 @@ class ArrayModificationViewModel: ObservableObject {
         filterdArray = users.sorted(by: { $0.points > $1.points })
          
         */
+        
+        // FILTER
+        filterdArray = users.filter( {
+            (user) -> Bool in user.isVerified == false
+        })
+        
+        // MAP
     }
     
     func getUsers() {
