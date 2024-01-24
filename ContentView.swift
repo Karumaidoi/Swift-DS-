@@ -4,6 +4,7 @@ import SwiftUI
 class ArrayModificationViewModel: ObservableObject {
     @Published var users: [UserModel] = [];
     @Published var filterdArray: [UserModel] = [];
+    @Published var mappedArray: [String] = [];
     
     init() {
         getUsers()
@@ -23,11 +24,28 @@ class ArrayModificationViewModel: ObservableObject {
         */
         
         // FILTER
+        /*
         filterdArray = users.filter( {
             (user) -> Bool in user.isVerified == false
         })
         
+        filterdArray = users.filter({  $0.isVerified})
+         */
+        
         // MAP
+        /*
+        mappedArray = users.map({ (user) -> String in
+            return user.name;
+        })
+        
+        mappedArray = users.map({$0.name})
+        */
+        
+        //COMBINING OPERATORS
+        mappedArray = users.sorted(by: {$0.points > $1.points})
+            .filter({$0.isVerified})
+            .compactMap({$0.name})
+        
     }
     
     func getUsers() {
