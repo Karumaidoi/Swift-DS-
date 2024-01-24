@@ -5,10 +5,12 @@ class ArrayModificationViewModel: ObservableObject {
     @Published var users: [UserModel] = [];
     @Published var filterdArray: [UserModel] = [];
     @Published var mappedArray: [String] = [];
+    @Published var totalPoints: Int = 0;
     
     init() {
         getUsers()
         filter()
+        calcTotalUserPoits();
     }
     
     func filter() {
@@ -46,6 +48,12 @@ class ArrayModificationViewModel: ObservableObject {
             .filter({$0.isVerified})
             .compactMap({$0.name})
         
+    }
+    
+    // REDUCE
+    func calcTotalUserPoits() {
+        totalPoints = users.reduce(0, { $0 + $1.points });
+        print(totalPoints);
     }
     
     func getUsers() {
