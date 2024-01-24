@@ -11,12 +11,15 @@ class ArrayModificationViewModel: ObservableObject {
     }
     
     func filter() {
-//        filterdArray = users.sorted(by: { user1, user2 -> Bool in
-//            return user1.points < user2.points
-//        })
+        /*
+        filterdArray = users.sorted(by: { user1, user2 -> Bool in
+            return user1.points < user2.points
+        })
         
         // Other way to sort data
         filterdArray = users.sorted(by: { $0.points > $1.points })
+         
+        */
     }
     
     func getUsers() {
