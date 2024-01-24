@@ -3,9 +3,20 @@ import SwiftUI
 
 class ArrayModificationViewModel: ObservableObject {
     @Published var users: [UserModel] = [];
+    @Published var filterdArray: [UserModel] = [];
     
     init() {
-            getUsers()
+        getUsers()
+        filter()
+    }
+    
+    func filter() {
+//        filterdArray = users.sorted(by: { user1, user2 -> Bool in
+//            return user1.points < user2.points
+//        })
+        
+        // Other way to sort data
+        filterdArray = users.sorted(by: { $0.points > $1.points })
     }
     
     func getUsers() {
@@ -31,7 +42,7 @@ struct ContentView: View {
     
     var body: some View {
         List {
-            ForEach(vm.users, id: \.id) { item in
+            ForEach(vm.filterdArray, id: \.id) { item in
                 VStack(alignment: .leading) {
                     Text(item.name)
                         .font(.title3)
