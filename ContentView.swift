@@ -30,20 +30,21 @@ struct ContentView: View {
     @StateObject var vm  = ArrayModificationViewModel();
     
     var body: some View {
-        VStack(spacing: 20) {
+        List {
             ForEach(vm.users, id: \.id) { item in
-                VStack {
+                VStack(alignment: .leading) {
                     Text(item.name)
                         .font(.title3)
                     HStack {
                         Text("Ponts \(item.points)")
                         Spacer()
                         if item.isVerified {
-                            Image(systemName: "frame.fill")
+                            Image(systemName: "flame.fill")
                         }
                     }
                 }
             }
-        }
+        }// LIST
+        
     }
 }
